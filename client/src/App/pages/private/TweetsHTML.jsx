@@ -1,12 +1,18 @@
-import React, { useEffect, useState, Component } from 'react';
+import * as React from "react";
+import "../../../styles.css";
 
-const TweetsHTML = (props) => {
+import TopBar from "./TopBar.jsx";
+import Tweet from "./Tweet.jsx";
 
+
+export default function TweetsHTML(props) {
+    
+  
   return (
-    <div>
-        TWEETS HTML
+    <div className={props.quoting ? "tweetHTMLquoting" : "tweetHTML"} key={ props.tweetData.tweet_id }>
+      <TopBar user={ props.quoting ? props.tweetData.user : props.tweetData.user } />
+      <Tweet tweetData={ props.tweetData } hide_bottom_bar={ props.quoting } />
     </div>
-  )
-}
 
-export default TweetsHTML;
+  );
+}

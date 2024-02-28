@@ -12,9 +12,8 @@ import NonTweetBottomBar from "./NonTweetBottomBar.jsx";
 
 export default function NonTweet(props) {
   
-  
   const newStr = props.tweetData.text;
-    
+
   // const str = newStr.replace("\n", "<br /><br />");
   const str = newStr.split("\n").join("<br />");
     

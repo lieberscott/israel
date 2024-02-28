@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 
 const tweetSchema = new mongoose.Schema({
   created_at: { type: String, default: "0" },
+  created_at_date: { type: Date, default: new Date() },
   tweet_id: { type: String, default: "-1" },
   conversation_id: { type: String, default: "-1" },
   text: { type: String, default: "" },
@@ -16,6 +17,8 @@ const tweetSchema = new mongoose.Schema({
   },
   image_urls: { type: [Object], default: [] },
   thread_arr: { type: [Object], default: [] },
+  video: Boolean,
+  video_html: String,
   retweet_count: Number,
   likes_count: Number,
   comments_count: Number,

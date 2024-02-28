@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import "../../../styles.css";
+import { categories } from "../../../categories.js";
 
 
 const buttons = [
@@ -129,10 +130,10 @@ export default function Buttons(props) {
   
   return (
     <div className="categorizeButtonsDiv">
-      { buttons.map((item, i, arr) => {
-        return (
-          <button id={item.category} key={ item.category} onClick={(e) => handleClick(e)}>{ item.category }</button>
-        )
+      { categories.map((item, i, arr) => {
+          { item.subcategories.map((item2, j) => {
+            return <button id={item2.category} key={ item2.category} onClick={(e) => handleClick(e)}>{ item2.category }</button>
+          })}
       })}
     </div>
   );

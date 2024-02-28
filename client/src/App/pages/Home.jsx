@@ -1,22 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Grid from '@mui/material/Unstable_Grid2';
+import "../../styles.css";
+import { categories } from "../../categories.js";
 
 import CategoryHomepage from "./private/CategoryHomepage.jsx";
 
 
 
 const Home = () => {
-
-  const imagesArr = [
-    { xs: 8, category: "hostages", name: "Hostage Stories", subcategories: ["hostageStories"] },
-    { xs: 4, category: "oct7", name: "Oct. 7 testimonies", subcategories: ["oct7fallen", "oct7testimonies", "heroicStories"]},
-    { xs: 4, category: "fallen_soldiers", name: "Fallen soldiers", subcategories: ["israeliFallenSoldiersStories"]},
-    { xs: 8, category: "hamas_evil", name: "Hamas Evil", subcategories: ["gazaSickCultureOfHate", "gazaTeachesKidsHateAndViolence", "hamasInTheirOwnWordsAndHamasEvil", "hamasWarCrimes", "houthis", "noGazanIsInnocent", "noPalestinianState", "palestiniansOnlyHaveThemselvesToBlame", "hamasLies", "hideFacesLikeKlan", "proPalestineSupportsViolenceAndHamas", "proPalestineViolenceIntimidation", "stupidProtestors", "tearingDownPosters", "antiSemitism", "dayAfterProtests", "theNewNazis", "theyreFullOfHate", "harvestingOrgansLibel", "oneStateSolutionGame"] },
-    // { xs: 7, category: "pro_palestine_lies", subcategories: ["antiIsraelTwitterLies", "itsNotAboutIsraeliMistreatment", "palestineWasARealPlaceLie", "palestiniansWelcomedJewsLie", "proPalestineLies", "apartheid", "colonizersLie", "counteringAntiIsraelCliches", "ethnicCleansingInversion", "genocideCliche", "israelInversionStrategy", "antiIsraelJewsCounterarguments", "alAlhiHospitalBombing", "alShifaHospital", "blamingIsraelLies", "deathTollLie", "gazanDoctorsAndJournalists", "internationalLaw"]},
-    // { xs: 5, category: "moving_pro_israel_speeches", subcategories: ["movingProIsraelSpeeches"]}
-  
-  ]
 
   const handleClick = async () => {
     const response = await fetch(`/add_to_mongo`);
@@ -29,16 +21,28 @@ const Home = () => {
   return (
     <div className="homePageWrapper">
       <div className="textWhite">This site is meant to provide an easy place for people to learn about the current conflict.</div>
-      <button onClick={ handleClick}>Add to Mongo</button>
       <div className="gridWrapper">
-      <Grid container spacing={2}>
+      <Grid container spacing={1}>
         
-        { imagesArr.map((item, i) => {
-          return (
+        { categories.map((item, i) => {
+          return ( i < 7 ?
               <Grid key={item.category} position="relative" borderRadius={6} height={250} xs={item.xs} md={item.xs}>
-                <Link key={item.category} href={`/category/${item.category}`}>
+                <Link to={`/category/${item.name}`} state={{ name: item.name, category: item.category, subcategories: item.subcategories }}>
                   <CategoryHomepage category={ item.category } name={ item.name } />
                 </Link>
+              </Grid>
+              :
+              <Grid key={ item.category } xs={ item.xs}>
+                <Link key={item.category} to={`/category/${item.category}`} state={{ name: item.name, category: item.category, subcategories: item.subcategories }}>
+                  <h3 className="homepageText">{ item.name }</h3>
+                </Link>
+                {item.subcategories.map((subcategory, j) => {
+                  return (
+                    <Link key={subcategory.category} to={`/category/${subcategory.name}`} state={{ name: subcategory.name, category: subcategory.category, subcategories: item.subcategories }}>
+                      <div className="homepageText">{subcategory.name}</div>
+                    </Link>
+                  )
+                })}
               </Grid>
           )
         })}

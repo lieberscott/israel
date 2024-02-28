@@ -33,7 +33,6 @@ app.post("/api/get_home_images", (req, res) => {
 
 app.get("/add_to_mongo", async (req, res) => {
   console.log("add to mongo!");
-  console.log("readyState ", mongoose.connection.readyState);
   fs.readdir("./2_second_round", async (err, files) => {
     let newStr = "";
     files.forEach(async (file) => {
@@ -50,8 +49,14 @@ app.get("/add_to_mongo", async (req, res) => {
   });
 });
 
-app.post("/api/tweets_by_category", (req, res) => {
+app.post("/api/tweets_by_category", async (req, res) => {
   const category = req.body.category;
+  const skip = req.body.skip;
+
+  const tweets = await Tweet.find({ category }).sort({ created_at: 1 }).skip(skip).limit(10).lean().exec();
+
+  return res.json({ tweets })
+
 });
 
 // Handles any requests that don't match the ones above

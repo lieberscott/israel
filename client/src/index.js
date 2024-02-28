@@ -7,6 +7,7 @@ import { BrowserRouter } from 'react-router-dom';
 
 // Import and apply CSS stylesheet
 import "./styles.css";
+import { categories } from "./categories.js";
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -14,15 +15,17 @@ root.render(
   <BrowserRouter>
     <main role="main" className="wrapper">
       <div className="links">
-        <Link href="/"><div className="linksText">Home</div></Link>
-        <span className="divider">|</span>
-        <Link href="/category/hostages"><div className="linksText">Hostages</div></Link>
-        <span className="divider">|</span>
-        <Link href="/category/oct7"><div className="linksText">Oct. 7</div></Link>
-        <span className="divider">|</span>
-        <Link href="/category/fallen_soldier"><div className="linksText">Fallen Soldiers</div></Link>
-        <span className="divider">|</span>
-        <Link href="/category/hamas_evil"><div className="linksText">Hamas Evil</div></Link>
+        <Link to="/" state={{ name: "", category: "", categories }}><div className="linksText">Home</div></Link>
+          <span className="divider">|</span>
+        { categories.map((item, i) => {
+          return i < 7 ?
+          (
+          <div className="links" key={ item.name}>
+            <Link to={`/category/${item.name}`} state={{ name: item.name, category: item.subcategories[0].category, subcategories: item.subcategories }}><div className="linksText">{ item.name }</div></Link>
+              { i === 6 ? [] : <span className="divider">|</span> }
+          </div> )
+          : []
+        })}
       </div>
       <div className="content">
         {/* Router specifies which component to insert here as the main content */}

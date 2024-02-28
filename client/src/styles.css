@@ -97,6 +97,7 @@ to this section's matching END comment to see page-specific styles.
   .links {
     color: white;
     display: flex;
+    text-align: center;
   }
   
   .linksText {
@@ -419,6 +420,12 @@ to this section's matching END comment to see page-specific styles.
   .homePageWrapper {
     margin: auto;
   }
+
+  .homepageText {
+    text-decoration: none;
+    color: white;
+    margin-bottom: 3px;
+  }
   
   .gridWrapper {
     height: 500px;
@@ -581,12 +588,13 @@ to this section's matching END comment to see page-specific styles.
     border: 1px solid lightgray;
     padding-top: 25px;
     padding-bottom: 25px;
+    padding-left: 200px;
   }
   
   .slideshowSlider {
     white-space: nowrap;
     transition: ease 1000ms;
-    padding-left: 200px; /* 1/2 of .slideshow width (1000) minus .slide width (600) -> 400 / 2 == 200 */
+    /* padding-left: 200px; 1/2 of .slideshow width (1000) minus .slide width (600) -> 400 / 2 == 200 */
   }
   
   .slide {
@@ -598,12 +606,32 @@ to this section's matching END comment to see page-specific styles.
     max-height: 500px;
   /*   min-height: 400px; */
     width: 600px; /* If this changes, must also change .slideshowSlider padding-left (1/6 of this value) and on carousel.jsx, the style in the translate3d (.slide width (600) / .slideshow width (800)) */
-    margin: 0 auto;
+    /* margin: 0 0; */
   /*   border-radius: 40px; */
   }
   
   .slide::-webkit-scrollbar { 
       display: none;  /* Safari and Chrome */
+  }
+
+  .subcategory {
+    color: white;
+    margin: 0 auto;
+    text-align: center;
+    font-weight: 400;
+    display: flex;
+    text-decoration: none;
+    margin-bottom: 15px;
+  }
+
+  .subcategoryBold {
+    color: white;
+    margin: 0 auto;
+    text-align: center;
+    font-weight: 700;
+    display: flex;
+    text-decoration: none;
+    margin-bottom: 15px;
   }
   
   /* Buttons */

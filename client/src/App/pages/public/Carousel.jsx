@@ -1,49 +1,62 @@
 import { useEffect, useState } from "react";
 import "../../../styles.css";
+import { useLocation, Link } from 'react-router-dom';
+
 
 import TweetMainData from "../private/TweetMainData.jsx";
 import NonTweetMainData from "../nonTweets/NonTweetMainData.jsx";
+import Buttons from "../private/Buttons.jsx";
 
 const buttons = ["#0088FE", "#00C49F"];
 const delay = 80500;
 
 export default function Carousel(props) {
+
+  const location = useLocation();
+  const { category, name, subcategories } = location.state;
+
   const [index, setIndex] = useState(0);
   const [json, setJson] = useState([]);
   const [loaded, setLoaded] = useState(false);
-  const [setKeepCheckingForNewTweets, keepCheckingForNewTweets] = useState(true);
-  
-  
-  useEffect(() => {
-   getNewTweets(0);
-  }, [props.params.cat]);
+  const [keepCheckingForNewTweets, setKeepCheckingForNewTweets] = useState(true);
 
-  const getNewTweets = async () => {
-    const data = await fetch(`/tweets_by_category`, {
+  useEffect(() => {
+    getNewTweets(true);
+   }, [category]);
+
+
+  const getNewTweets = async (createNewArr) => {
+    const data = await fetch(`/api/tweets_by_category`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
         // 'Content-Type': 'application/x-www-form-urlencoded',
       },
-      body: JSON.stringify({ category: props.params.cat, skip: json.length })
+      body: JSON.stringify({ category, skip: json.length })
     });
     
     const importedJson = await data.json();
-    console.log("importedJson.length. ", importedJson.length);
 
-    if (importedJson.length < 10) { // < 10 (10 should be whatever number is "limit" on the Node/Mongo side)
+    if (importedJson.tweets.length < 10) { // < 10 (10 should be whatever number is "limit" on the Node/Mongo side)
       setKeepCheckingForNewTweets(false);
     }
 
-    setJson(prev => prev.concat(importedJson));
-    if (!loaded) {
+    if (createNewArr) {
+      setJson(importedJson.tweets);
+      setIndex(0);
+    }
+    else {
+      setJson(prev => prev.concat(importedJson.tweets));
+    }
+    if (!loaded && importedJson.tweets.length > 0) {
       setLoaded(true);
     }
   }
 
 
   const checkForNewTweets = () => {
-    if (json.length - 8 > index) {
+    if (json.length - 5 < index) {
+      console.log("getNewTweets")
       getNewTweets();
     }
   }
@@ -51,16 +64,23 @@ export default function Carousel(props) {
 
   return (
     <div className="slideshow">
+      <div className="links">
+      {subcategories.map((subcat, j, arr) => {
+        return <Link key={ subcat.category } to={`/category/${subcat.name}`} state={{ name: subcat.name, category: subcat.category, subcategories: subcategories }}><div className={ subcat.name === name ? "subcategoryBold" : "subcategory"}>{subcat.name} { arr.length - 1 === j ? "" : "  |  "}  </div></Link>
+      })}
+      </div>
      { loaded ? <><div
         className="slideshowSlider"
-        style={{ transform: [`translate3d(${-index * 60}%, 0, 0)`] }}
+        style={{ transform: [`translate3d(${-index * 600}px, 0, 0)`] }}
       >
           {json.map((item, i) => (
-            <div className="slide">
-              { props.params.cat === "pro_palestine_lies" || props.params.cat === "hamas_lies" ? <TweetMainData key={ item.id } item={item} scale={ index === i } /> : <NonTweetMainData key={ item.id } item={item} scale={ index === i } /> }
+            <div key={item.id} className="slide">
+              { category === "pro_palestine_lies" || category === "hamas_lies" ? <TweetMainData key={ item.id } item={item} scale={ index === i } /> : <NonTweetMainData key={ item.id } item={item} scale={ index === i } /> }
             </div>
           ))}
       </div>
+
+      <Buttons setIndex={ setIndex } pageNum={category} tweetData={json[index]}  />
 
       <div className="slideshowDots">
         {buttons.map((_, idx) => (
@@ -68,7 +88,9 @@ export default function Carousel(props) {
             key={idx}
             className={`slideshowDot${""}`}
             onClick={() => {
-              checkForNewTweets();
+              if (keepCheckingForNewTweets) {
+                checkForNewTweets();
+              }
               setIndex(prev => {
                 if (idx === 0 && prev <= 0) {
                   return 0;

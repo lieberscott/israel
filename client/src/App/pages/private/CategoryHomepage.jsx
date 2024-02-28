@@ -21,7 +21,6 @@ export default function CategoryHomepage(props) {
   
   const manageRotateImage = () => {
 
-    
     if (changeImageCounter === 0) {
       setIndexOne(prev => ((prev + 2) % (imgArr.length - 3)));
       setChangeImageCounter(prev => prev + 1);
@@ -77,7 +76,7 @@ export default function CategoryHomepage(props) {
 
   return (
     <>
-      { loaded ?
+      { loaded ? (
         <div className="categoryHomepage">
           <p className="categoryName">{name}</p>
           <div className="categoryImageWrapper">
@@ -86,7 +85,7 @@ export default function CategoryHomepage(props) {
           <div className="categoryImageWrapper2">
             <img className={ !fadeIn ? "categoryImageIn" : "categoryImageOut"} src={imgArr[indexTwo].img_url} />
           </div>
-        </div> : [] }
+        </div> ) : [] }
     </>
   );
 }
