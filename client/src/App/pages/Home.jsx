@@ -2,9 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Grid from '@mui/material/Unstable_Grid2';
 import "../../styles.css";
-import { categories } from "../../categories.js";
+import { categories, einat, sam } from "../../categories.js";
 
 import CategoryHomepage from "./private/CategoryHomepage.jsx";
+import NonTweet from "./nonTweets/NonTweet.jsx";
 
 
 
@@ -20,9 +21,16 @@ const Home = () => {
 
   return (
     <div className="homePageWrapper">
-      <div className="textWhite">This site is meant to provide an easy place for people to learn about the current conflict.</div>
       <div className="gridWrapper">
+      <p className="textWhite">Start with these two important videos. Then scroll down for more.</p>
+
       <Grid container spacing={1}>
+        <Grid position="relative" xs={5} md={5} spacing={2}>
+          <NonTweet tweetData={ einat } user={ einat.user } />
+        </Grid>
+        <Grid position="relative" xs={5} spacing={2} md={5}>
+          <NonTweet tweetData={ sam } user={ sam.user } />
+        </Grid>
         
         { categories.map((item, i) => {
           return ( i < 7 ?
@@ -46,10 +54,11 @@ const Home = () => {
               </Grid>
           )
         })}
+        <p className="textWhite">Hostages, fallen soldiers, victims of the Oct. 7 attack nor anyone else has specifically endorsed — nor been asked to endorse — the views expressed on this site. Any view expressed on the site is that of the authors themselves.</p>
+
         
       </Grid>
-    </div>
-    </div>
+    </div>    </div>
   );
 }
 export default Home;

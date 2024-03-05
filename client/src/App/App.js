@@ -6,7 +6,6 @@ import List from './pages/List.jsx';
 import Tweet from "./pages/private/Tweet.jsx";
 import TweetsHTML from "./pages/private/TweetsHTML.jsx";
 import TweetMain from "./pages/private/TweetsHTML.jsx";
-import CategoryPage from "./pages/private/CategoryPage.jsx";
 import Carousel from "./pages/public/Carousel.jsx";
 
 const App = () => {

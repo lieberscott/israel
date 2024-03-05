@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require("mongoose");
 const path = require('path');
 const fs = require('fs');
+require("dotenv").config();
 
 const Tweet = require("./mongoose/tweetSchema.js");
 
@@ -33,10 +34,10 @@ app.post("/api/get_home_images", (req, res) => {
 
 app.get("/add_to_mongo", async (req, res) => {
   console.log("add to mongo!");
-  fs.readdir("./2_second_round", async (err, files) => {
+  fs.readdir("./1_first_round", async (err, files) => {
     let newStr = "";
     files.forEach(async (file) => {
-      const data = fs.readFileSync(`./2_second_round/${file}`);
+      const data = fs.readFileSync(`./1_first_round/${file}`);
       const str = data.toString();
       
       const json = JSON.parse(str);
@@ -53,11 +54,33 @@ app.post("/api/tweets_by_category", async (req, res) => {
   const category = req.body.category;
   const skip = req.body.skip;
 
+  console.log("category : ", category);
+
   const tweets = await Tweet.find({ category }).sort({ created_at: 1 }).skip(skip).limit(10).lean().exec();
+
+  console.log("tweets.length : ", tweets.length);
 
   return res.json({ tweets })
 
 });
+
+app.post("/api/recategorize", async (req, res) => {
+  const category = req.body.category;
+  let tweetData = req.body.tweetData;
+
+  tweetData.category = category;
+
+  const str = "," + JSON.stringify(tweetData, null, 2);
+
+  fs.appendFile(`./3_rearranged_tweets/${category}.json`, str, (err) => {
+    if (err) {
+      console.log("by_page_num error : ", err);
+      return res.json({ ok: false })
+    }
+    console.log(`added to ${category}`);
+    return res.json({ ok: true });
+  })
+})
 
 // Handles any requests that don't match the ones above
 app.get('*', (req,res) =>{
@@ -65,7 +88,8 @@ app.get('*', (req,res) =>{
 });
 
 const port = process.env.PORT || 5000;
-mongoose.connect("mongodb://localhost:27017/israel")
+// mongoose.connect("mongodb://localhost:27017/israel")
+mongoose.connect(`mongodb+srv://${process.env.MONGO_NAME}:${process.env.MONGO_PASS}@cluster0.6wfov.mongodb.net/`)
 .then(() => {
   console.log("mongoose connected");
   app.listen(port);

@@ -102,9 +102,8 @@ export default function Buttons(props) {
   
   const handleClick = async (e) => {
     
-    console.log("handleClick");
     
-    const url = "http://localhost:3000/categorize";
+    const url = "/api/recategorize";
     const url2 = "https://get-liked-tweets-json-part-1.glitch.me/categorize";
     
     const response = await fetch(url, {
@@ -120,7 +119,7 @@ export default function Buttons(props) {
     
     if (json.ok) {
       console.log("OK!");
-      props.setIndex(prev => prev - 1);
+      props.setIndex(prev => prev + 1);
     }
     // props.setIndex(prev => prev + 1);
     
@@ -131,9 +130,9 @@ export default function Buttons(props) {
   return (
     <div className="categorizeButtonsDiv">
       { categories.map((item, i, arr) => {
-          { item.subcategories.map((item2, j) => {
+          return <span key={ item.category + i }>{ item.subcategories.map((item2, j) => {
             return <button id={item2.category} key={ item2.category} onClick={(e) => handleClick(e)}>{ item2.category }</button>
-          })}
+          })}</span>
       })}
     </div>
   );

@@ -18,11 +18,11 @@ root.render(
         <Link to="/" state={{ name: "", category: "", categories }}><div className="linksText">Home</div></Link>
           <span className="divider">|</span>
         { categories.map((item, i) => {
-          return i < 7 ?
+          return i < 5 ?
           (
           <div className="links" key={ item.name}>
-            <Link to={`/category/${item.name}`} state={{ name: item.name, category: item.subcategories[0].category, subcategories: item.subcategories }}><div className="linksText">{ item.name }</div></Link>
-              { i === 6 ? [] : <span className="divider">|</span> }
+            <Link to={`/category/${item.subcategories[0].name}`} state={{ name: item.subcategories[0].name, category: item.subcategories[0].category, subcategories: item.subcategories }}><div className="linksText">{ item.subcategories[0].name }</div></Link>
+              { i === 4 ? [] : <span className="divider">|</span> }
           </div> )
           : []
         })}

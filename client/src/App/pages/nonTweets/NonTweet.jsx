@@ -22,7 +22,7 @@ export default function NonTweet(props) {
     <>
       
       {/* If Tweet includes image(s) */}
-      { props.tweetData.image_urls && props.tweetData.image_urls.length ? <TweetsImages image_urls={ props.tweetData.image_urls } note_url={props.tweetData.note_url} /> : [] }
+      { (props.tweetData.image_urls && props.tweetData.image_urls.length) ? <TweetsImages image_urls={ props.tweetData.image_urls } note_url={props.tweetData.note_url} /> : [] }
 
       {/* If quote-tweeting, then render another component here (with the data of the Tweet being quoted) */ }
       { props.tweetData.quoted && props.tweetData.quoted_tweet_data.unavailable ? <Unavailable /> : props.tweetData.quoted ? <NonTweetsHTML tweetData={props.tweetData.quoted_tweet_data } quoting={ true } /> : [] }
@@ -35,7 +35,7 @@ export default function NonTweet(props) {
       </div>
       
       
-      { props.hide_bottom_bar ? [] : <NonTweetBottomBar user={ props.user } /> }
+      { props.hide_bottom_bar ? [] : <NonTweetBottomBar user={ props.user } created_at={ props.tweetData.created_at } /> }
       
             
       

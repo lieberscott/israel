@@ -32,18 +32,20 @@ export default function Carousel(props) {
         "Content-Type": "application/json",
         // 'Content-Type': 'application/x-www-form-urlencoded',
       },
-      body: JSON.stringify({ category, skip: json.length })
+      body: JSON.stringify({ category, skip: createNewArr ? 0 : json.length })
     });
     
     const importedJson = await data.json();
+    console.log("importedJson.tweets.length : ", importedJson.tweets.length);
 
-    if (importedJson.tweets.length < 10) { // < 10 (10 should be whatever number is "limit" on the Node/Mongo side)
+    if (!importedJson.tweets || importedJson.tweets.length === 0) { // < 10 (10 should be whatever number is "limit" on the Node/Mongo side)
       setKeepCheckingForNewTweets(false);
     }
 
     if (createNewArr) {
       setJson(importedJson.tweets);
       setIndex(0);
+      setKeepCheckingForNewTweets(true);
     }
     else {
       setJson(prev => prev.concat(importedJson.tweets));
@@ -55,6 +57,7 @@ export default function Carousel(props) {
 
 
   const checkForNewTweets = () => {
+    console.log("checkForNewTweets index : ", index);
     if (json.length - 5 < index) {
       console.log("getNewTweets")
       getNewTweets();
@@ -66,7 +69,10 @@ export default function Carousel(props) {
     <div className="slideshow">
       <div className="links">
       {subcategories.map((subcat, j, arr) => {
-        return <Link key={ subcat.category } to={`/category/${subcat.name}`} state={{ name: subcat.name, category: subcat.category, subcategories: subcategories }}><div className={ subcat.name === name ? "subcategoryBold" : "subcategory"}>{subcat.name} { arr.length - 1 === j ? "" : "  |  "}  </div></Link>
+        return (< div className="links" key={ subcat.name}>
+        <Link key={ subcat.category } to={`/category/${subcat.name}`} state={{ name: subcat.name, category: subcat.category, subcategories: subcategories }}><div className={ subcat.name === name ? "subcategoryBold" : "subcategory"}>{subcat.name}</div></Link>
+          { j === arr.length - 1 ? [] : <span className="divider">|</span> }
+      </div> )
       })}
       </div>
      { loaded ? <><div
@@ -80,7 +86,7 @@ export default function Carousel(props) {
           ))}
       </div>
 
-      <Buttons setIndex={ setIndex } pageNum={category} tweetData={json[index]}  />
+      {/* <Buttons setIndex={ setIndex } pageNum={category} tweetData={json[index]}  /> */}
 
       <div className="slideshowDots">
         {buttons.map((_, idx) => (
@@ -88,6 +94,7 @@ export default function Carousel(props) {
             key={idx}
             className={`slideshowDot${""}`}
             onClick={() => {
+              console.log("keepCheckingForNewTweets : ", keepCheckingForNewTweets);
               if (keepCheckingForNewTweets) {
                 checkForNewTweets();
               }

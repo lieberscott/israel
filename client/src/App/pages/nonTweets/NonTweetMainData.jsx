@@ -12,7 +12,7 @@ export default function NonTweetMainData(props) {
   
   
   return (
-    <div className="tweetMainWrapper" style={{ transform: [`scale(${scale ? 1 : 0.8})`] }}>
+    <div className="tweetMainWrapper" style={{ transform: [`scale(${scale ? 1 : 0.95})`] }}>
       <div className="tweetMain">
         <a className="link" href={item.tweet_url} onClick={() => false} target="_blank">
         {/* Check if thread/reply or single tweet */ }

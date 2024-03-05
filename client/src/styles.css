@@ -615,7 +615,7 @@ to this section's matching END comment to see page-specific styles.
   }
 
   .subcategory {
-    color: white;
+    color: gray;
     margin: 0 auto;
     text-align: center;
     font-weight: 400;

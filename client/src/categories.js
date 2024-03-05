@@ -1,9 +1,9 @@
 export const categories = [
-    { xs: 8, category: "hostages", name: "Hostages", subcategories: [{ category: "hostageStories", name: "Hostages" }] },
-    { xs: 4, category: "oct7", name: "Oct. 7 testimonies", subcategories: [{ category: "oct7fallen", name: "Oct 7 fallen" }, { category: "oct7testimonies", name: "Oct. 7 testimonies" } ]},
-    { xs: 8, category: "fallen_soldiers", name: "Fallen soldiers", subcategories: [{ category: "israeliFallenSoldiersStories", name: "Fallen soldiers" }]},
-    { xs: 4, category: "hamas_evil", name: "Hamas evil", subcategories: [{ category: "gazaSickCultureOfHate", name: "Gaza's sick culture of hate" }, { category: "gazaTeachesKidsHateAndViolence", name: "Gaza teaches kids hate and violence" }, { category:"hamasInTheirOwnWordsAndHamasEvil", name: "Hamas's evil in their own words" }, { category: "hamasWarCrimes", name: "Hamas war crimes" }, {category: "NoGazanIsInnocent", name: "No Gazan is innocent" }] },
-    { xs: 8, category: "muslimsTaughtToHateJews", name: "Muslims are taught to hate Jews", subcategories: [{ category: "muslimsTaughtToHateJews", name: "Muslims taught to hate Jews" }, { category: "muslimViolence", name: "Muslim violence" }]},
+    { xs: 8, category: "hostageStories", name: "Hostages", subcategories: [{ category: "hostageStories", name: "Hostages" }] },
+    { xs: 4, category: "oct7testimonies", name: "Oct. 7 testimonies", subcategories: [{ category: "oct7testimonies", name: "Oct. 7 testimonies" }, { category: "oct7fallen", name: "Oct 7 fallen" } ]},
+    { xs: 8, category: "israeliFallenSoldiersStories", name: "Fallen soldiers", subcategories: [{ category: "israeliFallenSoldiersStories", name: "Fallen soldiers" }]},
+    { xs: 4, category: "gazaSickCultureOfHate", name: "Gaza's sick culture", subcategories: [{ category: "gazaSickCultureOfHate", name: "Gaza's sick culture of hate" }, { category: "gazaTeachesKidsHateAndViolence", name: "Gaza teaches kids hate and violence" }, { category:"hamasInTheirOwnWordsAndHamasEvil", name: "Hamas's evil in their own words" }, { category: "hamasWarCrimes", name: "Hamas war crimes" }, {category: "NoGazanIsInnocent", name: "Palestinians support Hamas" }] },
+    { xs: 8, category: "muslimsTaughtToHateJews", name: "Muslims are taught to hate Jews", subcategories: [{ category: "muslimsTaughtToHateJews", name: "Muslims are taught to hate Jews" }, { category: "muslimViolence", name: "Muslim violence" }]},
     { xs: 4, category: "solutions", name: "Solutions", subcategories: [{ category: "solutions", name: "Solutions" }, { category: "unrwa", name: "Eliminate UNRWA" }]},
     { xs: 8, category: "unapologeticallyProIsrael", name: "Unapologetically pro-Israel", subcategories: [{ category: "unapologeticallyProIsrael", name: "Unapologetically pro-Israel" }, { category: "proIsraelProZionism", name: "pro-Israel, pro-Zionism" }, { category: "movingProIsraelSpeeches", name: "Moving pro-Israel speeches" }, { category: "defendingIsrael", name: "Defending Israel" }, { category: "heroicStories", name: "Heroic Israeli stories" }, { category: "israeliMilitaryVictories", name: "Israeli military victories" }, { category: "israeliSpirit", name: "Israeli spirit" }, { category: "israelSupporters", name: "Israel supporters" }]},
     { xs: 12, category: "endless_hypocrisy", name: "Their endless hypocrisy", subcategories: [{ category:"israelsImpossibleSituationAndDoubleStandards", name: "Israel's impossible situation and double standards" }, { category: "proPalestineHypocrisy", name: "pro-Palestine hypocrisy" }]},
@@ -21,3 +21,74 @@ export const categories = [
     { xs: 12, category: "mediaBias", name: "Media Bias", subcategories: [{ category: "mediaBias", name: "Media Bias" }]},
     { xs: 12, category: "historyOfConflict", name: "History of the conflict", subcategories: [{ category: "historyOfConflict", name: "History of the conflict" }, { category: "israelTriedforPeace", name: "Israel tried for peace" }]}
   ]
+
+  export const einat = {
+    "created_at": "2023-11-17T09:28:14.000Z",
+    "tweet_id": "1725445733267235231",
+    "conversation_id": "1725445733267235231",
+    "text": "If you are a person in the West who really wants to understand what’s going on between Israel and the Palestinians, and what the hope might be—and how—for there to ever be peace, this is the one video you should watch: Dr. @EinatWilf https://t.co/FLSCeJpEg7",
+    "user": {
+      "id": "28872567",
+      "name": "Amy Alkon",
+      "screen_name": "amyalkon",
+      "profile_page_url": "https://twitter.com/amyalkon",
+      "profile_image_url": "https://pbs.twimg.com/profile_images/383167395/Amyjusthead_normal.jpg",
+      "verified": true,
+      "verified_type": "blue"
+    },
+    "image_urls": [],
+    "thread_arr": [],
+    "tweet_url": "https://twitter.com/amyalkon/status/1725445733267235231",
+    "quoted": false,
+    "quoted_tweet_data": {
+      "user": {}
+    },
+    "reply": false,
+    "in_reply_to_data": {
+      "user": {}
+    },
+    "video": true,
+      "video_html": "<blockquote class='twitter-tweet' data-media-max-width='560'><p lang='en' dir='ltr'>A must watch lecture by Dr. <a href='https://twitter.com/EinatWilf?ref_src=twsrc%5Etfw'>@EinatWilf</a>.<br>In a nutshell, She talks about the factors that led to the October 7th massacre, The Palestinian ethos, the dissolution of some Israelis&#39; core beliefs regarding the conflict, and how it&#39;s all rooted in 1948.<br><br>Take the time to watch. <a href='https://t.co/yiGjXtObBG'>pic.twitter.com/yiGjXtObBG</a></p>&mdash; Ella Travels (Ella Kenan) (@EllaTravelsLove) <a href='https://twitter.com/EllaTravelsLove/status/1725204612477604212?ref_src=twsrc%5Etfw'>November 16, 2023</a></blockquote>",
+     
+    "thread": false,
+    "category": "movingProIsraelSpeeches",
+    "retweet_count": 21,
+    "likes_count": 46,
+    "comments_count": 3,
+    "impressions_count": 6331
+  }
+
+  export const sam = {
+    "created_at": "2023-11-08T19:48:26.000Z",
+    "tweet_id": "1722340320933781798",
+    "conversation_id": "1722340320933781798",
+    "text": "Sam Harris on pro-Hamas demonstrators in the US: “Our streets have been filled with people literally tripping over themselves in their eagerness to demonstrate that they cannot distinguish between those who intentionally kill babies and those who inadvertently kill them... If you’re  waving the flag of people who murder non-combatants intentionally, killing parents in front of their children and children in front of their parents, burning people alive at a music festival devoted to peace, and decapitating others and dragging their dismembered bodies through the streets — all to shouts of ‘God is Great’...  If you have landed, proudly and sanctimoniously on the wrong side of this asymmetry, this vast gulf between savagery and civilization, while marching through the quad of an Ivy League university... I’m not sure it matters that your moral confusion is due to the fact that you just happen to hate Jews — whether you’re an antisemite or just an apologist for atrocity is probably immaterial. The crucial point is that you are dangerously confused about the moral norms and political sympathies that make life in this world worth living.\" \n\nhttps://t.co/pAOrvxr4Df",
+    "user": {
+      "id": "1549461766983360512",
+      "name": "i/o",
+      "screen_name": "eyeslasho",
+      "profile_page_url": "https://twitter.com/eyeslasho",
+      "profile_image_url": "https://pbs.twimg.com/profile_images/1634399122961604608/__DbKsgm_normal.jpg",
+      "verified": false,
+      "verified_type": "none"
+    },
+    "image_urls": [],
+    "thread_arr": [],
+    "tweet_url": "https://twitter.com/eyeslasho/status/1722340320933781798",
+    "quoted": false,
+    "quoted_tweet_data": {
+      "user": {}
+    },
+    "reply": false,
+    "in_reply_to_data": {
+      "user": {}
+    },
+    "thread": false,
+    "video": true,
+    "video_html": "<iframe width='auto' height='250' src='https://www.youtube.com/embed/oFBm8nQ2aBo?si=fdTJQGSbV5az26n4' title='YouTube video player' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share' allowfullscreen></iframe>",
+    "category": "movingProIsraelSpeeches",
+    "retweet_count": 398,
+    "likes_count": 2512,
+    "comments_count": 114,
+    "impressions_count": 257946
+  }

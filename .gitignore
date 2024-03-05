@@ -3,6 +3,8 @@
 home_images
 node_modules
 client/node_modules
+3_rearranged_tweets
+.env
 
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
