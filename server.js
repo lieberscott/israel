@@ -87,12 +87,26 @@ app.get('*', (req,res) =>{
     res.sendFile(path.join(__dirname+'/client/build/index.html'));
 });
 
-const port = process.env.PORT || 5000;
-// mongoose.connect("mongodb://localhost:27017/israel")
+
+
+let port;
+console.log("❇️ NODE_ENV is", process.env.NODE_ENV);
+if (process.env.NODE_ENV === "production") {
+  port = process.env.PORT || 3000;
+} else {
+  port = 3001;
+  console.log("⚠️ Not seeing your changes as you develop?");
+  console.log(
+    "⚠️ Do you need to set 'start': 'npm run development' in package.json?"
+  );
+}
+
+
+
 mongoose.connect(`mongodb+srv://${process.env.MONGO_NAME}:${process.env.MONGO_PASS}@cluster0.6wfov.mongodb.net/`)
 .then(() => {
   console.log("mongoose connected");
   app.listen(port);
-  console.log('App is listening on port ' + port);
+  console.log('App is listening on port ' + listener.address().port);
 })
 .catch((err) => console.log(err));
