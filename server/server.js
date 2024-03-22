@@ -48,9 +48,12 @@ app.post("/api/get_home_images", (req, res) => {
 app.post("/api/tweets_by_category", async (req, res) => {
   const category = req.body.category;
   const skip = req.body.skip;
+  
 
   const tweets = await Tweet.find({ category }).sort({ created_at: 1 }).skip(skip).limit(10).lean().exec();
 
+  console.log("tweets : " ,tweets);
+  
   return res.json({ tweets })
 
 });

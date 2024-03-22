@@ -25,7 +25,7 @@ export default function NonTweet(props) {
       { (props.tweetData.image_urls && props.tweetData.image_urls.length) ? <TweetsImages image_urls={ props.tweetData.image_urls } note_url={props.tweetData.note_url} /> : [] }
 
       {/* If quote-tweeting, then render another component here (with the data of the Tweet being quoted) */ }
-      { props.tweetData.quoted && props.tweetData.quoted_tweet_data.unavailable ? <Unavailable /> : props.tweetData.quoted ? <NonTweetsHTML tweetData={props.tweetData.quoted_tweet_data } quoting={ true } /> : [] }
+      { props.tweetData.quoted && props.tweetData.quoted_tweet_data && props.tweetData.quoted_tweet_data.unavailable ? <Unavailable /> : props.tweetData.quoted ? <NonTweetsHTML tweetData={props.tweetData.quoted_tweet_data } quoting={ true } /> : [] }
       
       {/* If it includes a video */ }
       { props.tweetData.video_html ? <TweetsVideo video_html={ props.tweetData.video_html } /> : [] }
